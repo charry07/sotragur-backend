@@ -362,37 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiNoticiaNoticia extends Schema.CollectionType {
-  collectionName: 'noticias';
-  info: {
-    singularName: 'noticia';
-    pluralName: 'noticias';
-    displayName: 'Noticia';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Titulo: Attribute.String;
-    Cuerpo: Attribute.RichText;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::noticia.noticia',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::noticia.noticia',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -819,6 +788,115 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiNoticiaNoticia extends Schema.CollectionType {
+  collectionName: 'noticias';
+  info: {
+    singularName: 'noticia';
+    pluralName: 'noticias';
+    displayName: 'Noticia';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Titulo: Attribute.String;
+    Cuerpo: Attribute.RichText;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::noticia.noticia',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::noticia.noticia',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiTiposVehiculoTiposVehiculo extends Schema.CollectionType {
+  collectionName: 'tipos_vehiculos';
+  info: {
+    singularName: 'tipos-vehiculo';
+    pluralName: 'tipos-vehiculos';
+    displayName: 'TiposVehiculo';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Nombre: Attribute.String;
+    vehiculo: Attribute.Relation<
+      'api::tipos-vehiculo.tipos-vehiculo',
+      'oneToOne',
+      'api::vehiculo.vehiculo'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::tipos-vehiculo.tipos-vehiculo',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::tipos-vehiculo.tipos-vehiculo',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiVehiculoVehiculo extends Schema.CollectionType {
+  collectionName: 'vehiculos';
+  info: {
+    singularName: 'vehiculo';
+    pluralName: 'vehiculos';
+    displayName: 'Vehiculo';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Placa: Attribute.String;
+    NombreConductor: Attribute.String;
+    Auxiliar: Attribute.String;
+    Propietario: Attribute.String;
+    SOAT: Attribute.Date;
+    ContactoPropietario: Attribute.Integer;
+    CorreoPropietario: Attribute.Email;
+    ImagenBus: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    tipos_vehiculo: Attribute.Relation<
+      'api::vehiculo.vehiculo',
+      'oneToOne',
+      'api::tipos-vehiculo.tipos-vehiculo'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::vehiculo.vehiculo',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::vehiculo.vehiculo',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -829,7 +907,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::noticia.noticia': ApiNoticiaNoticia;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -838,6 +915,9 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::noticia.noticia': ApiNoticiaNoticia;
+      'api::tipos-vehiculo.tipos-vehiculo': ApiTiposVehiculoTiposVehiculo;
+      'api::vehiculo.vehiculo': ApiVehiculoVehiculo;
     }
   }
 }

@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "vehiculos",
+  "info": {
+    "singularName": "vehiculo",
+    "pluralName": "vehiculos",
+    "displayName": "Vehiculo",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Placa": {
+      "type": "string"
+    },
+    "NombreConductor": {
+      "type": "string"
+    },
+    "Auxiliar": {
+      "type": "string"
+    },
+    "Propietario": {
+      "type": "string"
+    },
+    "SOAT": {
+      "type": "date"
+    },
+    "ContactoPropietario": {
+      "type": "integer"
+    },
+    "CorreoPropietario": {
+      "type": "email"
+    },
+    "ImagenBus": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "tipos_vehiculo": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::tipos-vehiculo.tipos-vehiculo",
+      "inversedBy": "vehiculo"
+    }
+  }
+}
