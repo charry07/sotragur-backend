@@ -22,10 +22,10 @@ jobs:
       run: npm install
 
     - name: Audit and fix vulnerabilities
-      run: npm audit fix --force # Agrega esta línea para corregir vulnerabilidades
+      run: npm audit fix --force
 
     - name: Update dependencies
-      run: npm update # Agrega esta línea para actualizar las dependencias
+      run: npm update
 
     - name: Build Strapi
       run: |
@@ -43,4 +43,5 @@ jobs:
         app-name: strapi-sotragur-backend
         slot-name: production
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-
+        package: .
+        actions: 'sync'
