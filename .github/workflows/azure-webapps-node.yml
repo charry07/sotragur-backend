@@ -11,10 +11,10 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4 # Actualizado a la última versión
 
     - name: Set up Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4 # Actualizado a la última versión
       with:
         node-version: '20.13.1'
 
@@ -27,7 +27,7 @@ jobs:
         npm run build
       
     - name: Login to Azure
-      uses: azure/login@v1
+      uses: azure/login@v1 # Esta es la última versión disponible actualmente
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
