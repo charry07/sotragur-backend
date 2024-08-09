@@ -21,9 +21,6 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Audit and fix vulnerabilities
-      run: npm audit fix --force
-
     - name: Update dependencies
       run: npm update
 
