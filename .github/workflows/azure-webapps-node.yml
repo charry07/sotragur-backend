@@ -11,15 +11,21 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4 # Actualizado a la última versión
+      uses: actions/checkout@v4
 
     - name: Set up Node.js
-      uses: actions/setup-node@v4 # Actualizado a la última versión
+      uses: actions/setup-node@v4
       with:
         node-version: '20.13.1'
 
     - name: Install dependencies
       run: npm install
+
+    - name: Audit and fix vulnerabilities
+      run: npm audit fix --force # Agrega esta línea para corregir vulnerabilidades
+
+    - name: Update dependencies
+      run: npm update # Agrega esta línea para actualizar las dependencias
 
     - name: Build Strapi
       run: |
@@ -27,7 +33,7 @@ jobs:
         npm run build
       
     - name: Login to Azure
-      uses: azure/login@v1 # Esta es la última versión disponible actualmente
+      uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
@@ -37,3 +43,4 @@ jobs:
         app-name: strapi-sotragur-backend
         slot-name: production
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+
