@@ -2,9 +2,9 @@
   "name": "sotragur-strapi",
   "private": true,
   "version": "0.1.0",
-  "description": "A Strapi application",
+  "description": "Strapi para Sotragur",
   "scripts": {
-    "develop": "strapi develop",
+    "dev": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi",
@@ -27,7 +27,7 @@
     "better-sqlite3": "9.4.3"
   },
   "author": {
-    "name": "A Strapi developer"
+    "name": "Anderson Charry Naranjo cel:+573147781832"
   },
   "strapi": {
     "uuid": "8ffa7fc1-05e6-4604-b1ec-9259181dbab3"
