@@ -1,30 +1,22 @@
-# Usar una imagen base de Node.js
+# Usa una imagen base de Node.js
 FROM node:20
 
-# Establecer el directorio de trabajo
-WORKDIR /app
+# Establece el directorio de trabajo
+WORKDIR /usr/src/app
 
-# Instalar las dependencias necesarias para sharp
-RUN apt-get update && apt-get install -y \
-  libvips-dev \
-  && rm -rf /var/lib/apt/lists/*
-
-# Copiar los archivos de la aplicación
+# Copia el archivo package.json y package-lock.json
 COPY package*.json ./
 
-# Instalar las dependencias
+# Instala las dependencias
 RUN npm install
 
-# Copiar el resto de los archivos de la aplicación
+# Copia el resto de la aplicación
 COPY . .
 
-# Instalar sharp manualmente
-RUN npm install sharp
-
-# Construir la aplicación
+# Construye la aplicación
 RUN npm run build
 
-# Exponer el puerto en el que la aplicación se ejecutará
+# Expone el puerto de la aplicación
 EXPOSE 1337
 
 # Comando para iniciar la aplicación
